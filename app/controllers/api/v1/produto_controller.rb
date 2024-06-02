@@ -1,7 +1,7 @@
 module Api
-  module V1   
-   class ProdutoController < ApplicationController
-      before_action :set_produto, only: %i[ show update destroy ]
+  module V1
+    class ProdutoController < ApplicationController
+      before_action :set_produto, only: %i[show update destroy]
 
       # GET /produto
       def index
@@ -41,15 +41,16 @@ module Api
       end
 
       private
-        # Use callbacks to share common setup or constraints between actions.
-        def set_produto
-          @produto = Produto.find(params[:id])
-        end
 
-        # Only allow a list of trusted parameters through.
-        def produto_params
-          params.require(:produto).permit(:fornecedor_id, :nome, :descricao, :quantidade, :preco, :observacao)
-        end
+      # Use callbacks to share common setup or constraints between actions.
+      def set_produto
+        @produto = Produto.find(params[:id])
+      end
+
+      # Only allow a list of trusted parameters through.
+      def produto_params
+        params.require(:produto).permit(:fornecedor_id, :nome, :descricao, :quantidade, :preco, :observacao)
+      end
     end
   end
 end

@@ -12,31 +12,32 @@
 
 ActiveRecord::Schema[7.1].define(version: 0) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "fornecedores", primary_key: "fornecedor_id", id: :serial, force: :cascade do |t|
-    t.string "nome", limit: 60, null: false
-    t.string "email", limit: 50, null: false
-    t.string "cnpj", limit: 20, null: false
-    t.string "endereco", limit: 100, null: false
-    t.string "telefone", limit: 15, default: "00 00000-0000"
+  create_table 'fornecedores', primary_key: 'fornecedor_id', id: :serial, force: :cascade do |t|
+    t.string 'nome', limit: 60, null: false
+    t.string 'email', limit: 50, null: false
+    t.string 'cnpj', limit: 20, null: false
+    t.string 'endereco', limit: 100, null: false
+    t.string 'telefone', limit: 15, default: '00 00000-0000'
 
-    t.unique_constraint ["cnpj"], name: "fornecedores_cnpj_key"
-    t.unique_constraint ["email"], name: "fornecedores_email_key"
-    t.unique_constraint ["nome"], name: "fornecedores_nome_key"
+    t.unique_constraint ['cnpj'], name: 'fornecedores_cnpj_key'
+    t.unique_constraint ['email'], name: 'fornecedores_email_key'
+    t.unique_constraint ['nome'], name: 'fornecedores_nome_key'
   end
 
-  create_table "produtos", primary_key: "produto_id", id: :serial, force: :cascade do |t|
-    t.integer "fornecedor_id", null: false
-    t.string "nome", limit: 60, null: false
-    t.string "descricao", limit: 100, null: false
-    t.integer "quantidade", null: false
-    t.money "preco", scale: 2, null: false
-    t.string "observacao", limit: 200
+  create_table 'produtos', primary_key: 'produto_id', id: :serial, force: :cascade do |t|
+    t.integer 'fornecedor_id', null: false
+    t.string 'nome', limit: 60, null: false
+    t.string 'descricao', limit: 100, null: false
+    t.integer 'quantidade', null: false
+    t.money 'preco', scale: 2, null: false
+    t.string 'observacao', limit: 200
 
-    t.unique_constraint ["descricao"], name: "produtos_descricao_key"
-    t.unique_constraint ["nome"], name: "produtos_nome_key"
+    t.unique_constraint ['descricao'], name: 'produtos_descricao_key'
+    t.unique_constraint ['nome'], name: 'produtos_nome_key'
   end
 
-  add_foreign_key "produtos", "fornecedores", column: "fornecedor_id", primary_key: "fornecedor_id", name: "fk_fornecedor_id"
+  add_foreign_key 'produtos', 'fornecedores', column: 'fornecedor_id', primary_key: 'fornecedor_id',
+                                              name: 'fk_fornecedor_id'
 end
