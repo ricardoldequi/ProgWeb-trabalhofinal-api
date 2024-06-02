@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fornecedor_id: one
+  nome: MyString
+  descricao: MyString
+  quantidade: 1
+  preco: 9.99
+  observacao: MyString
+
+two:
+  fornecedor_id: two
+  nome: MyString
+  descricao: MyString
+  quantidade: 1
+  preco: 9.99
+  observacao: MyString
