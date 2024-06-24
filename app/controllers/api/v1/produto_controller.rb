@@ -5,10 +5,16 @@ module Api
 
       # GET /produto
       def index
-        @produto = Produto.all
-
-        render json: @produto
+        if params[:search].present?
+          @produtos = Produto.search_by_nome_descricao_fornecedor(params[:search])
+          Rails.logger.info("Search results: #{@produtos.pluck(:nome)}")
+        else
+          @produtos = Produto.all
+        end
+      
+        render json: @produtos
       end
+      
 
       # GET /produto/1
       def show
@@ -20,7 +26,7 @@ module Api
         @produto = Produto.new(produto_params)
 
         if @produto.save
-          render json: @produto, status: :created, location: @produto
+          render json: @produto, status: :created, location: api_v1_produto_url(@produto)
         else
           render json: @produto.errors, status: :unprocessable_entity
         end

@@ -20,7 +20,7 @@ CREATE DATABASE produtosefornecedores
     	 email VARCHAR(50) NOT NULL UNIQUE,
     	 cnpj VARCHAR(20) NOT NULL UNIQUE,
 		 endereco VARCHAR (100) NOT NULL,
-         telefone VARCHAR(15) DEFAULT '00 00000-0000',
+         telefone VARCHAR(16) DEFAULT '00 00000-0000',
 				 CONSTRAINT PK_fornecedor_id PRIMARY KEY (fornecedor_id)
 
 		);
@@ -45,9 +45,9 @@ CREATE DATABASE produtosefornecedores
 -- inserções basicas 
 
 INSERT INTO FORNECEDORES (nome, email, cnpj, endereco, telefone) VALUES
-('Raca Negra', 'florzinhadosilvio@sbt.com', '12.345.678/0001-90', 'Rua Pedro ma oe, 123, São Paulo, SP', '11 12345-6789'),
-('Octopus LTDA', 'olokopeter@fausto.com', '98.765.432/0001-10', 'Brooklin, 1993, New York , NY', '21 98765-4321'),
-('Dako', 'oofogao@brasileiro.com', '56.789.012/0001-34', 'Rua Cavaliere, 789, Belo Horizonte, MG', '31 56789-0123');
+('Raca Negra', 'florzinhadosilvio@sbt.com', '12.345.678/0001-90', 'Rua Pedro ma oe, 123, São Paulo, SP', '(11) 12345-6789'),
+('Octopus LTDA', 'olokopeter@fausto.com', '98.765.432/0001-10', 'Brooklin, 1993, New York , NY', '(21) 98765-4321'),
+('Dako', 'oofogao@brasileiro.com', '56.789.012/0001-34', 'Rua Cavaliere, 789, Belo Horizonte, MG', '(31) 56789-0123');
 
 
 INSERT INTO PRODUTOS (fornecedor_id, nome, descricao, quantidade, preco, observacao) VALUES
