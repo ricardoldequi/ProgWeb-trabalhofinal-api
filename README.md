@@ -19,6 +19,7 @@ Certifique-se de ter o PostgreSQL instalado em sua máquina. A versão utilizada
 
 Para criar o banco de dados, execute o script localizado na pasta produtosefornecedores_api/scripts/create.sql. Certifique-se também de ajustar o arquivo database.yml conforme as configurações de acesso ao banco.
 
+Deixe o banco de dados aberto enquanto rodar a aplicação.
 
 ### Instalação de Dependências
 Após configurar o ambiente, instale as gems do projeto. Execute o seguinte comando no terminal, com permissões de administrador:
