@@ -5,9 +5,13 @@ module Api
 
       # GET /fornecedor
       def index
-        @fornecedor = Fornecedor.all
+        if params[:search]
+          @fornecedores = Fornecedor.where("nome ILIKE ? OR cnpj ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+        else
+          @fornecedores = Fornecedor.all
+        end
 
-        render json: @fornecedor
+        render json: @fornecedores
       end
 
       # GET /fornecedor/1
@@ -18,12 +22,15 @@ module Api
       # POST /fornecedor
       def create
         @fornecedor = Fornecedor.new(fornecedor_params)
-
+      
         if @fornecedor.save
-          render json: @fornecedor, status: :created, location: @fornecedor
+          render json: @fornecedor, status: :created
         else
           render json: @fornecedor.errors, status: :unprocessable_entity
         end
+      rescue => e
+        Rails.logger.error("Erro inesperado: #{e.message}")
+        render json: { error: 'Internal Server Error', exception: e.message }, status: :internal_server_error
       end
 
       # PATCH/PUT /fornecedor/1
