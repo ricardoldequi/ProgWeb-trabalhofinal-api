@@ -1,18 +1,18 @@
 require 'test_helper'
 
-class ProdutosControllerTest < ActionDispatch::IntegrationTest
+class ProdutoControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @produto = produtos(:one)
+    @produto = produto(:one)
   end
 
   test 'should get index' do
-    get produtos_url, as: :json
+    get produto_url, as: :json
     assert_response :success
   end
 
   test 'should create produto' do
     assert_difference('Produto.count') do
-      post produtos_url,
+      post produto_url,
            params: { produto: { descricao: @produto.descricao, fornecedor_id_id: @produto.fornecedor_id_id, nome: @produto.nome, observacao: @produto.observacao, preco: @produto.preco, quantidade: @produto.quantidade } }, as: :json
     end
 

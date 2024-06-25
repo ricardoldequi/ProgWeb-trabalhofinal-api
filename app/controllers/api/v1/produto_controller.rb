@@ -11,10 +11,9 @@ module Api
         else
           @produtos = Produto.all
         end
-      
+
         render json: @produtos
       end
-      
 
       # GET /produto/1
       def show

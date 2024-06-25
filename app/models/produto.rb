@@ -5,7 +5,7 @@ class Produto < ApplicationRecord
   include PgSearch::Model
 
   pg_search_scope :search_by_nome_descricao_fornecedor,
-                  against: [:nome, :descricao],
+                  against: %i[nome descricao],
                   associated_against: { fornecedor: :nome },
                   using: {
                     tsearch: { prefix: true }

@@ -5,13 +5,13 @@ module Api
 
       # GET /fornecedor
       def index
-        if params[:search]
-          @fornecedores = Fornecedor.where("nome ILIKE ? OR cnpj ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
-        else
-          @fornecedores = Fornecedor.all
-        end
+        @fornecedor = if params[:search]
+                        Fornecedor.where('nome ILIKE ? OR cnpj ILIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
+                      else
+                        Fornecedor.all
+                      end
 
-        render json: @fornecedores
+        render json: @fornecedor
       end
 
       # GET /fornecedor/1
@@ -22,13 +22,13 @@ module Api
       # POST /fornecedor
       def create
         @fornecedor = Fornecedor.new(fornecedor_params)
-      
+
         if @fornecedor.save
           render json: @fornecedor, status: :created
         else
           render json: @fornecedor.errors, status: :unprocessable_entity
         end
-      rescue => e
+      rescue StandardError => e
         Rails.logger.error("Erro inesperado: #{e.message}")
         render json: { error: 'Internal Server Error', exception: e.message }, status: :internal_server_error
       end
@@ -44,7 +44,11 @@ module Api
 
       # DELETE /fornecedor/1
       def destroy
-        @fornecedor.destroy!
+        @fornecedor.destroy
+        render json: { message: 'Fornecedor deletado com sucesso.' }, status: :ok
+      rescue ActiveRecord::InvalidForeignKey => e
+        render json: { error: 'Não é possível deletar este fornecedor porque está sendo usado no cadastro de produtos.' },
+               status: :unprocessable_entity
       end
 
       private

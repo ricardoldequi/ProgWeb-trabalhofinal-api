@@ -41,3 +41,28 @@ Sempre que houver alterações no script do banco de dados, lembre-se de dar um 
 ```
 rails db:schema:dump
 ```
+
+### Configuração do banco de testes
+para realizar os testes unitarios, deve ser criado um novo banco de dados, para isso, segue os comandos abaixo
+
+# Cria o banco no contexto de teste
+```
+rails db:create RAILS_ENV=test
+```
+
+# Migra a estrutura do banco de dados de development para test
+```
+rails db:schema:load RAILS_ENV=test
+```
+# Replica os dados de development para test
+```
+rails db:seed RAILS_ENV=test
+```
+
+### Rodar os testes
+
+```
+bundle exec rspec
+```
+
+

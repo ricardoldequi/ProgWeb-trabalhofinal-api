@@ -1,18 +1,18 @@
 require 'test_helper'
 
-class FornecedorsControllerTest < ActionDispatch::IntegrationTest
+class FornecedorControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @fornecedor = fornecedors(:one)
+    @fornecedor = fornecedor(:one)
   end
 
   test 'should get index' do
-    get fornecedors_url, as: :json
+    get fornecedor_url, as: :json
     assert_response :success
   end
 
   test 'should create fornecedor' do
     assert_difference('Fornecedor.count') do
-      post fornecedors_url,
+      post fornecedor_url,
            params: { fornecedor: { cnpj: @fornecedor.cnpj, email: @fornecedor.email, endereco: @fornecedor.endereco, nome: @fornecedor.nome, telefone: @fornecedor.telefone } }, as: :json
     end
 
