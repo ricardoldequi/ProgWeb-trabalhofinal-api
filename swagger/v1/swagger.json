@@ -1,0 +1,84 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Produtosefornecedores API",
+    "version": "v1",
+    "description": "API para gerenciamento de fornecedores e produtos"
+  },
+  "paths": {
+  },
+  "components": {
+    "schemas": {
+      "Fornecedor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "nome": {
+            "type": "string",
+            "example": "Fornecedor ABC"
+          },
+          "email": {
+            "type": "string",
+            "example": "fornecedor@example.com"
+          },
+          "cnpj": {
+            "type": "string",
+            "example": "00.000.000/0000-00"
+          },
+          "endereco": {
+            "type": "string",
+            "example": "Rua Exemplo, 123"
+          },
+          "telefone": {
+            "type": "string",
+            "example": "123456789"
+          }
+        },
+        "required": [
+          "nome",
+          "email",
+          "cnpj",
+          "endereco"
+        ]
+      },
+      "Produto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "nome": {
+            "type": "string",
+            "example": "Produto ABC"
+          },
+          "descricao": {
+            "type": "string",
+            "example": "Descrição do Produto"
+          },
+          "quantidade": {
+            "type": "integer",
+            "example": 10
+          },
+          "preco": {
+            "type": "number",
+            "example": 99.99
+          },
+          "observacao": {
+            "type": "string",
+            "example": "Observações adicionais"
+          }
+        },
+        "required": [
+          "nome",
+          "descricao",
+          "quantidade",
+          "preco"
+        ]
+      }
+    }
+  }
+}

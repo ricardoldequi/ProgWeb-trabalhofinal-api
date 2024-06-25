@@ -3,7 +3,9 @@ module Api
     class FornecedorController < ApplicationController
       before_action :set_fornecedor, only: %i[show update destroy]
 
-      # GET /fornecedor
+      # GET /api/v1/fornecedor
+     # Retorna todos os fornecedores ou filtra por nome/cnpj se houver parâmetro de busca
+
       def index
         @fornecedor = if params[:search]
                         Fornecedor.where('nome ILIKE ? OR cnpj ILIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
@@ -14,12 +16,15 @@ module Api
         render json: @fornecedor
       end
 
-      # GET /fornecedor/1
+      # GET /api/v1/fornecedor/1
+      # Retorna um fornecedor específico passando o ID como parametro
       def show
         render json: @fornecedor
       end
 
-      # POST /fornecedor
+      # POST /api/v1/fornecedor
+      # Cria um novo fornecedor
+
       def create
         @fornecedor = Fornecedor.new(fornecedor_params)
 
@@ -33,7 +38,9 @@ module Api
         render json: { error: 'Internal Server Error', exception: e.message }, status: :internal_server_error
       end
 
-      # PATCH/PUT /fornecedor/1
+      # PATCH/PUT /api/v1/fornecedor/1
+      # Atualiza um fornecedor existente
+
       def update
         if @fornecedor.update(fornecedor_params)
           render json: @fornecedor
@@ -42,7 +49,8 @@ module Api
         end
       end
 
-      # DELETE /fornecedor/1
+      # DELETE /api/v1/fornecedor/1
+      # Deleta um fornecedor
       def destroy
         @fornecedor.destroy
         render json: { message: 'Fornecedor deletado com sucesso.' }, status: :ok

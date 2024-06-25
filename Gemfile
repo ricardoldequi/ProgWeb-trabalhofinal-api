@@ -42,6 +42,11 @@ group :development, :test do
   gem 'debug', platforms: %i[mri windows]
   gem 'rspec-rails', '6.1.1'
   gem 'factory_bot_rails'
+  gem 'rswag'
+  gem 'rswag-ui'
+  gem 'rswag-api'
+  gem 'swagger-docs'
+  gem 'swagger-ui_rails'
   gem 'selenium-webdriver', '4.10'
   gem 'webdrivers', '5.3.0'
 

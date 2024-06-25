@@ -3,7 +3,9 @@ module Api
     class ProdutoController < ApplicationController
       before_action :set_produto, only: %i[show update destroy]
 
-      # GET /produto
+      # GET /api/v1/produto
+      # Retorna todos os produtos ou filtra por nome 
+
       def index
         if params[:search].present?
           @produtos = Produto.search_by_nome_descricao_fornecedor(params[:search])
@@ -15,12 +17,14 @@ module Api
         render json: @produtos
       end
 
-      # GET /produto/1
+      # GET /api/v1/produto/1
+      # Retorna um produto específico
       def show
         render json: @produto
       end
 
-      # POST /produto
+      # POST /api/v1/produto
+      # Cria um novo produto
       def create
         @produto = Produto.new(produto_params)
 
@@ -31,7 +35,8 @@ module Api
         end
       end
 
-      # PATCH/PUT /produto/1
+      # PATCH/PUT /api/v1/produto/1
+      # Atualiza um produto existente
       def update
         if @produto.update(produto_params)
           render json: @produto
@@ -40,7 +45,9 @@ module Api
         end
       end
 
-      # DELETE /produto/1
+      # DELETE /api/v1/produto/1
+       # Deleta um produto
+
       def destroy
         @produto.destroy!
       end
